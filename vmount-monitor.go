@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
-  "time"
 	"io/ioutil"
 	"log"
 	"os"
+	"os/exec"
 	"strconv"
+	"time"
 )
 
 const file = "/dev/shm/bash-counter.run"
@@ -32,29 +33,36 @@ func main() {
 	}
 
 	switch os.Args[1] {
-	case "--plus":
-		plus()
-	case "--minus":
-		minus()
+	case "--login":
+		login()
+	case "--logout":
+		logout()
 	default:
 		log.Fatalln("Invalid!")
 	}
 }
 
-func plus() {
+func login() {
 	value := computeNew("+")
 	writeFile(value)
-  report()
+	report()
 }
 
-func minus() {
+func logout() {
 	value := computeNew("-")
 	// value cannot be negative
 	if value < 0 {
 		value = 0
 	}
+	if value == 0 {
+    fmt.Print("\033[31m") // red
+    fmt.Println("Bash counter has reached 0! vmount dismount initiated...")
+    fmt.Print("\033[0m") // reset color
+		vmountDismount()
+	}
 	writeFile(value)
-  report()
+	report()
+	time.Sleep(time.Second) // to have a chance to read it
 }
 
 func writeFile(value int) {
@@ -95,7 +103,36 @@ func getFileContent() int {
 }
 
 func report() {
-	fmt.Print("Bash counter: ", getFileContent())
-  time.Sleep(time.Second)
-  fmt.Print("\r                                      \r")
+	fmt.Print("\033[?25l") // hide cursor
+	fmt.Print("\033[32m")  // green
+	//fmt.Print("\033[7m")   // reverse
+	message := fmt.Sprintf("Bash counter: %d", getFileContent())
+	fmt.Println(message)
+	fmt.Print(vmountStatus())
+	fmt.Print("\033[0m") // reset color
+	fmt.Print("\r")
+	for i := 0; i < len(message); i++ {
+		fmt.Print(" ")
+	}
+	fmt.Print("\r")
+	fmt.Print("\033[?25h") // show cursor
+}
+
+func vmountStatus() string {
+	output, err := exec.Command("vmount").CombinedOutput()
+	if err != nil {
+		log.Fatal(err)
+	}
+	return string(output)
+}
+
+func vmountDismount() {
+	cmd := exec.Command("vmount", "--dismount")
+	cmd.Stdin = os.Stdin
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	err := cmd.Run()
+	if err != nil {
+		log.Fatal(err)
+	}
 }
