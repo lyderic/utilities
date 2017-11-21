@@ -18,18 +18,18 @@ func main() {
 	nohash := *nohashPtr
 
 	now := time.Now()
-  if ! nohash {
-    fmt.Print("##")
-  }
+	if !nohash {
+		fmt.Print("##")
+	}
 
 	fmt.Printf("%s %d %s ", wday_fr[now.Weekday().String()],
 		now.Day(), month_fr[now.Month().String()])
 
-  if annee {
-    fmt.Println(now.Year())
-  } else {
-    fmt.Println()
-  }
+	if annee {
+		fmt.Println(now.Year())
+	} else {
+		fmt.Println()
+	}
 
 }
 
