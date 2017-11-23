@@ -55,9 +55,9 @@ func logout() {
 		value = 0
 	}
 	if value == 0 {
-    fmt.Print("\033[31m") // red
-    fmt.Println("Bash counter has reached 0! vmount dismount initiated...")
-    fmt.Print("\033[0m") // reset color
+		fmt.Print("\033[31m") // red
+		fmt.Println("Bash counter has reached 0! vmount dismount initiated...")
+		fmt.Print("\033[0m") // reset color
 		vmountDismount()
 	}
 	writeFile(value)
