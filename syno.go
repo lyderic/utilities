@@ -19,6 +19,7 @@ func main() {
 	for idx, synonym := range synonyms {
 		fmt.Printf("[%03d] %s ", idx, synonym)
 	}
+  fmt.Println()
 }
 
 func getWord() string {
