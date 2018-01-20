@@ -13,11 +13,18 @@ func main() {
 
 	anneePtr := flag.Bool("a", false, "Affiche l'année")
 	nohashPtr := flag.Bool("n", false, "Ne pas afficher '##'")
+	nolinePtr := flag.Bool("e", false, "Ne pas insérer une ligne avant")
 	flag.Parse()
 	annee := *anneePtr
 	nohash := *nohashPtr
+	noline := *nolinePtr
 
 	now := time.Now()
+
+	if !noline {
+		fmt.Println()
+	}
+
 	if !nohash {
 		fmt.Print("##")
 	}
