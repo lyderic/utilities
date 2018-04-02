@@ -7,6 +7,7 @@ import (
 )
 
 func init() {
+	fmt.Println(os.Args(1))
 }
 
 func main() {
