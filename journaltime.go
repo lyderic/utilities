@@ -6,10 +6,6 @@ import (
 	"time"
 )
 
-func init() {
-	fmt.Println(os.Args(1))
-}
-
 func main() {
 
 	anneePtr := flag.Bool("a", false, "Affiche l'année")
