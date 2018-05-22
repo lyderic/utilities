@@ -26,17 +26,33 @@ func main() {
 	}
 	var all []Data
 	for _, file := range os.Args[1:] {
+		if !tools.PathExists(file) {
+			skip(file, "not found!")
+			continue
+		}
+		if info, err := os.Stat(file); err == nil && info.IsDir() {
+			skip(file, "is a directory")
+			continue
+		}
 		data := Data{}
 		data.Name = path.Base(file)
 		b, err := ioutil.ReadFile(file)
 		if err != nil {
 			log.Fatal(err)
 		}
+		if !utf8.Valid(b) {
+			skip(file, "not UTF8 readable")
+			continue
+		}
 		content := string(b)
 		data.Bytes = len(b)
-		data.Chars = utf8.RuneCountInString(content)
+		data.Chars = utf8.RuneCount(b)
 		data.Words = len(strings.Fields(content))
 		all = append(all, data)
+	}
+	if len(all) == 0 {
+		fmt.Println("No readable file found")
+		return
 	}
 	display(all)
 }
@@ -79,4 +95,8 @@ func getTotals(all []Data) Data {
 	totals.Words = w
 	totals.Bytes = b
 	return totals
+}
+
+func skip(file, reason string) {
+	fmt.Printf("> skipped %s: %s\n", file, reason)
 }
