@@ -7,7 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
-	"path"
+	"path/filepath"
 	"strings"
 	"unicode/utf8"
 )
@@ -20,28 +20,43 @@ type Data struct {
 }
 
 func main() {
-	if len(os.Args) == 1 {
-		fmt.Println("Usage:", os.Args[0], "<file(s)>")
-		os.Exit(42)
+	var pattern string
+	dir, err := filepath.Abs(".")
+	if err != nil {
+		log.Fatal(err)
+	}
+	if len(os.Args) == 2 {
+		switch os.Args[1] {
+		case "-h":
+			usage()
+			return
+		default:
+			pattern = os.Args[1]
+		}
 	}
 	var all []Data
-	for _, file := range os.Args[1:] {
-		if !tools.PathExists(file) {
-			skip(file, "not found!")
+	listing, err := ioutil.ReadDir(dir)
+	if err != nil {
+		log.Fatal(err)
+	}
+	for _, item := range listing {
+		name := item.Name()
+		abspath := filepath.Join(dir, name)
+		if !strings.Contains(name, pattern) {
 			continue
 		}
-		if info, err := os.Stat(file); err == nil && info.IsDir() {
-			skip(file, "is a directory")
+		if info, err := os.Stat(abspath); err == nil && info.IsDir() {
+			skip(name, "is a directory")
 			continue
 		}
 		data := Data{}
-		data.Name = path.Base(file)
-		b, err := ioutil.ReadFile(file)
+		data.Name = name
+		b, err := ioutil.ReadFile(abspath)
 		if err != nil {
 			log.Fatal(err)
 		}
 		if !utf8.Valid(b) {
-			skip(file, "not UTF8 readable")
+			skip(name, "not UTF8 readable")
 			continue
 		}
 		content := string(b)
@@ -51,7 +66,7 @@ func main() {
 		all = append(all, data)
 	}
 	if len(all) == 0 {
-		fmt.Println("No readable file found")
+		fmt.Printf("file not found, not readable or not matching pattern (%s)\n", pattern)
 		return
 	}
 	display(all)
@@ -99,4 +114,10 @@ func getTotals(all []Data) Data {
 
 func skip(file, reason string) {
 	fmt.Printf("> skipped %s: %s\n", file, reason)
+}
+
+func usage() {
+	fmt.Println("Usage:", os.Args[0], "<pattern>")
+	fmt.Println("count chars, words and bytes of files in current directory")
+	fmt.Println("optionnally filtered by pattern")
 }
