@@ -2,8 +2,11 @@ package main
 
 import (
 	"fmt"
+	"github.com/lyderic/tools"
 	"os"
 	"os/exec"
+	"sort"
+	"strings"
 )
 
 func main() {
@@ -12,15 +15,14 @@ func main() {
 		return
 	}
 	word := os.Args[1]
-	grepCmd := exec.Command("grep", "-siIrn", "--color", word)
-  lessCmd := exec.Command("less")
-	lessCmd.Stdin = grepCmd.Stdout
-  lessCmd.Stdout = os.Stdout
-	grepCmd.Stderr = os.Stderr
-	lessCmd.Stderr = os.Stderr
-	err := grepCmd.Run()
+	cmd := exec.Command("grep", "-siIrn", "--color=always", word)
+	b, err := cmd.CombinedOutput()
 	if err != nil {
-		fmt.Println("not found")
+		tools.PrintColorf(tools.RED, "'%s' not found\n", word)
+		return
 	}
-
+	output := strings.TrimSpace(string(b))
+	lines := strings.Split(output, "\n")
+	sort.Strings(lines)
+	tools.Less(strings.Join(lines, "\n"))
 }
