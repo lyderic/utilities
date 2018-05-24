@@ -1,6 +1,8 @@
 package main
 
 import (
+	"bytes"
+	"flag"
 	"fmt"
 	"github.com/lyderic/tools"
 	"github.com/olekukonko/tablewriter"
@@ -19,20 +21,25 @@ type Data struct {
 	Words int
 }
 
+/* Globals switches */
+var verbose, paginate, hidden bool
+
 func main() {
 	var pattern string
-	dir, err := filepath.Abs(".")
+	flag.BoolVar(&verbose, "v", false, "be verbose")
+	dirPtr := flag.String("d", ".", "directory")
+	flag.BoolVar(&hidden, "h", false, "count hidden files")
+	flag.BoolVar(&paginate, "l", false, "paginate output")
+	flag.Parse()
+	dir, err := filepath.Abs(*dirPtr)
 	if err != nil {
 		log.Fatal(err)
 	}
-	if len(os.Args) == 2 {
-		switch os.Args[1] {
-		case "-h":
-			usage()
-			return
-		default:
-			pattern = os.Args[1]
-		}
+	if verbose {
+		fmt.Println("Directory:", dir)
+	}
+	if len(flag.Args()) > 0 {
+		pattern = flag.Args()[0]
 	}
 	var all []Data
 	listing, err := ioutil.ReadDir(dir)
@@ -41,8 +48,15 @@ func main() {
 	}
 	for _, item := range listing {
 		name := item.Name()
+		if name[0] == '.' {
+			if !hidden {
+				skip(name, "hidden file")
+				continue
+			}
+		}
 		abspath := filepath.Join(dir, name)
 		if !strings.Contains(name, pattern) {
+			skip(name, "pattern not matched")
 			continue
 		}
 		if info, err := os.Stat(abspath); err == nil && info.IsDir() {
@@ -73,6 +87,7 @@ func main() {
 }
 
 func display(all []Data) {
+	buffer := new(bytes.Buffer)
 	lines := [][]string{}
 	for _, data := range all {
 		n := data.Name
@@ -81,7 +96,7 @@ func display(all []Data) {
 		b := tools.ThousandSeparator(data.Bytes)
 		lines = append(lines, []string{n, c, w, b})
 	}
-	table := tablewriter.NewWriter(os.Stdout)
+	table := tablewriter.NewWriter(buffer)
 	table.SetHeader([]string{"Name", "Chars", "Words", "Bytes"})
 	table.SetColumnAlignment([]int{tablewriter.ALIGN_LEFT,
 		tablewriter.ALIGN_RIGHT,
@@ -95,6 +110,11 @@ func display(all []Data) {
 		tools.ThousandSeparator(totals.Words),
 		tools.ThousandSeparator(totals.Bytes)})
 	table.Render()
+	if paginate {
+		tools.Less(buffer.String())
+	} else {
+		fmt.Print(buffer.String())
+	}
 }
 
 func getTotals(all []Data) Data {
@@ -113,11 +133,7 @@ func getTotals(all []Data) Data {
 }
 
 func skip(file, reason string) {
-	fmt.Printf("> skipped %s: %s\n", file, reason)
-}
-
-func usage() {
-	fmt.Println("Usage:", os.Args[0], "<pattern>")
-	fmt.Println("count chars, words and bytes of files in current directory")
-	fmt.Println("optionnally filtered by pattern")
+	if verbose {
+		fmt.Printf("> skipped %s: %s\n", file, reason)
+	}
 }
