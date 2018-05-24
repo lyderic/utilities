@@ -12,11 +12,13 @@ func main() {
 		return
 	}
 	word := os.Args[1]
-	cmd := exec.Command("grep", "-siIrn", "--color", word)
-	cmd.Stdin = os.Stdin
-	cmd.Stdout = os.Stdout
-	cmd.Stderr = os.Stderr
-	err := cmd.Run()
+	grepCmd := exec.Command("grep", "-siIrn", "--color", word)
+  lessCmd := exec.Command("less")
+	lessCmd.Stdin = grepCmd.Stdout
+  lessCmd.Stdout = os.Stdout
+	grepCmd.Stderr = os.Stderr
+	lessCmd.Stderr = os.Stderr
+	err := grepCmd.Run()
 	if err != nil {
 		fmt.Println("not found")
 	}
