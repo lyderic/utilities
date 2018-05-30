@@ -4,41 +4,63 @@ import (
 	"flag"
 	"fmt"
 	"time"
+  "strings"
 )
 
+var dbg bool
+
+type Options struct {
+	ShowYear      bool
+	EmptyLines    int
+	PrependNumber int
+	PrependSymbol string
+	Language      string
+}
+
+var o Options
+
 func main() {
-
-	anneePtr := flag.Bool("a", false, "Affiche l'année")
-	nohashPtr := flag.Bool("n", false, "Ne pas afficher '##'")
-	nolinePtr := flag.Bool("e", false, "Ne pas insérer de lignes")
+	flag.BoolVar(&dbg, "debug", false, "debug mode")
+	flag.BoolVar(&o.ShowYear, "y", false, "show year")
+	flag.IntVar(&o.EmptyLines, "e", 0, "number of lines to insert after displaying date")
+	flag.IntVar(&o.PrependNumber, "n", 0, "number of symbols to prepend to date")
+	flag.StringVar(&o.PrependSymbol, "s", "#", "symbol to prepend to date")
+	flag.StringVar(&o.Language, "l", "fr", "language")
 	flag.Parse()
-	annee := *anneePtr
-	nohash := *nohashPtr
-	noline := *nolinePtr
+	debug("o: %#v\n", o)
+	display(o)
+}
 
+func display(o Options) {
 	now := time.Now()
-
-	if !noline {
-		fmt.Println()
+  if o.PrependNumber > 0 {
+    fmt.Print(strings.Repeat(o.PrependSymbol, o.PrependNumber))
+  }
+	switch o.Language {
+	case "fr":
+		fmt.Printf("%s %d %s", wday_fr[now.Weekday().String()],
+			now.Day(), month_fr[now.Month().String()])
+	case "de":
+		fmt.Printf("%s %d %s", wday_de[now.Weekday().String()],
+			now.Day(), month_de[now.Month().String()])
+	default:
+		fmt.Printf("%s %d %s", now.Weekday(), now.Day(), now.Month())
 	}
+  if o.ShowYear {
+    fmt.Printf(" %d\n", now.Year())
+  } else {
+    fmt.Println()
+  }
+  for i:=0;i<o.EmptyLines;i++ {
+    fmt.Println()
+  }
+}
 
-	if !nohash {
-		fmt.Print("##")
+func debug(format string, args ...interface{}) {
+	format = "[DEBUG] " + format
+	if dbg {
+		fmt.Printf(format, args...)
 	}
-
-	fmt.Printf("%s %d %s ", wday_fr[now.Weekday().String()],
-		now.Day(), month_fr[now.Month().String()])
-
-	if annee {
-		fmt.Println(now.Year())
-	} else {
-		fmt.Println()
-	}
-
-	if !noline {
-		fmt.Println()
-	}
-
 }
 
 var month_fr = map[string]string{
@@ -62,3 +84,25 @@ var wday_fr = map[string]string{
 	"Thursday":  "Jeudi",
 	"Friday":    "Vendredi",
 	"Saturday":  "Samedi"}
+
+var month_de = map[string]string{
+	"January":   "Januar",
+	"February":  "Februar",
+	"March":     "März",
+	"April":     "April",
+	"May":       "Mai",
+	"June:":     "Juni",
+	"July":      "Juli",
+	"August":    "August",
+	"September": "September",
+	"October":   "Oktober",
+	"November":  "November",
+	"December":  "Dezember"}
+var wday_de = map[string]string{
+	"Sunday":    "Sonntag",
+	"Monday":    "Montag",
+	"Tuesday":   "Dienstag",
+	"Wednesday": "Mittwoch",
+	"Thursday":  "Donnerstag",
+	"Friday":    "Freitag",
+	"Saturday":  "Samstag"}
