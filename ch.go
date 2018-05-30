@@ -11,13 +11,13 @@ import (
 
 func main() {
 	if len(os.Args) == 1 {
-    usage()
+		usage()
 		return
 	}
-  if os.Args[1][0] == '-' {
-    usage()
-    return
-  }
+	if os.Args[1][0] == '-' {
+		usage()
+		return
+	}
 	word := os.Args[1]
 	cmd := exec.Command("grep", "-siIrn", "--color=always", word)
 	b, err := cmd.CombinedOutput()
@@ -32,6 +32,6 @@ func main() {
 }
 
 func usage() {
-  fmt.Println("Usage:",os.Args[0],"<word>")
-  fmt.Println("look for <word> in all files in dir")
+	fmt.Println("Usage:", os.Args[0], "<word>")
+	fmt.Println("look for <word> in all files in dir")
 }
