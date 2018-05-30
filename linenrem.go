@@ -12,6 +12,7 @@ import (
 )
 
 const VERSION = "0.0.0"
+const BAK = "bak"
 
 var dbg bool
 var known_hosts string
@@ -32,7 +33,7 @@ func main() {
 	var err error
 	flag.BoolVar(&dbg, "debug", false, "debug mode")
 	flag.StringVar(&file, "f", known_hosts, "file to remove line(s) from")
-	flag.StringVar(&bak, "b", "bak", "extension of backup file")
+	flag.StringVar(&bak, "b", BAK, "extension of backup file")
 	flag.Usage = usage
 	flag.Parse()
 	if dbg {
@@ -60,6 +61,9 @@ func process(input Input) error {
 	if len(input.Numbers) == 0 {
 		return fmt.Errorf("Please specify which line(s) to remove")
 	}
+	if err = backup(input); err != nil {
+		return err
+	}
 	var lines []string
 	if lines, err = linesFromFile(input.File); err != nil {
 		return err
@@ -71,21 +75,36 @@ func process(input Input) error {
 		if n, err = strconv.Atoi(number); err != nil {
 			return fmt.Errorf("%s: invalid line number", number)
 		}
-    if n < 1 {
-      return fmt.Errorf("cannot remove line %d! line count start at 1", n)
-    }
-    if n > ln {
-      return fmt.Errorf("cannot remove line %d! file has only %d line%s",
-      n, ln, tools.Ternary(ln > 1, "s", ""))
-    }
+		if n < 1 {
+			return fmt.Errorf("cannot remove line %d! line count start at 1", n)
+		}
+		if n > ln {
+			return fmt.Errorf("cannot remove line %d! file has only %d line%s",
+				n, ln, tools.Ternary(ln > 1, "s", ""))
+		}
 		numbers = append(numbers, n)
 	}
 	debug("numbers: %#v\n", numbers)
 	return nil
 }
 
+func backup(input Input) error {
+	fmt.Println("backing up", input.File)
+	var err error
+	parent := filepath.Dir(input.File)
+	debug("Parent directory: %s\n", parent)
+	backupFile := fmt.Sprintf("%s.%s", input.File, input.Bak)
+	debug("Backup file: %s\n", backupFile)
+	backupPath := filepath.Join(parent, backupFile)
+	debug("Backup path: %s\n", backupPath)
+	if err = tools.Copy(input.File, backupPath); err != nil {
+		return err
+	}
+	return nil
+}
+
 func linesFromFile(file string) ([]string, error) {
-  var lines []string
+	var lines []string
 	var err error
 	var f *os.File
 	if f, err = os.Open(file); err != nil {
@@ -96,7 +115,7 @@ func linesFromFile(file string) ([]string, error) {
 	for scanner.Scan() {
 		lines = append(lines, scanner.Text())
 	}
-  return lines, err
+	return lines, err
 }
 
 func debug(format string, args ...interface{}) {
