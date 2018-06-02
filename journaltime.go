@@ -74,7 +74,7 @@ var month_fr = map[string]string{
 	"March":     "mars",
 	"April":     "avril",
 	"May":       "mai",
-	"June:":     "juin",
+	"June":     "juin",
 	"July":      "juillet",
 	"August":    "août",
 	"September": "septembre",
