@@ -3,19 +3,19 @@ package main
 import (
 	"flag"
 	"fmt"
+	"strings"
 	"time"
-  "strings"
 )
 
 var dbg bool
 
 type Options struct {
-	ShowYear      bool
-	EmptyLinesBefore    int
-	EmptyLinesAfter    int
-	PrependNumber int
-	PrependSymbol string
-	Language      string
+	ShowYear         bool
+	EmptyLinesBefore int
+	EmptyLinesAfter  int
+	PrependNumber    int
+	PrependSymbol    string
+	Language         string
 }
 
 var o Options
@@ -35,12 +35,12 @@ func main() {
 
 func display(o Options) {
 	now := time.Now()
-  for i:=0;i<o.EmptyLinesBefore;i++ {
-    fmt.Println()
-  }
-  if o.PrependNumber > 0 {
-    fmt.Print(strings.Repeat(o.PrependSymbol, o.PrependNumber))
-  }
+	for i := 0; i < o.EmptyLinesBefore; i++ {
+		fmt.Println()
+	}
+	if o.PrependNumber > 0 {
+		fmt.Print(strings.Repeat(o.PrependSymbol, o.PrependNumber))
+	}
 	switch o.Language {
 	case "fr":
 		fmt.Printf("%s %d %s", wday_fr[now.Weekday().String()],
@@ -51,14 +51,14 @@ func display(o Options) {
 	default:
 		fmt.Printf("%s %d %s", now.Weekday(), now.Day(), now.Month())
 	}
-  if o.ShowYear {
-    fmt.Printf(" %d\n", now.Year())
-  } else {
-    fmt.Println()
-  }
-  for i:=0;i<o.EmptyLinesAfter;i++ {
-    fmt.Println()
-  }
+	if o.ShowYear {
+		fmt.Printf(" %d\n", now.Year())
+	} else {
+		fmt.Println()
+	}
+	for i := 0; i < o.EmptyLinesAfter; i++ {
+		fmt.Println()
+	}
 }
 
 func debug(format string, args ...interface{}) {
@@ -74,7 +74,7 @@ var month_fr = map[string]string{
 	"March":     "mars",
 	"April":     "avril",
 	"May":       "mai",
-	"June":     "juin",
+	"June":      "juin",
 	"July":      "juillet",
 	"August":    "août",
 	"September": "septembre",
