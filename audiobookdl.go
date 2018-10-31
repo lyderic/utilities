@@ -25,11 +25,15 @@ var c Config
 
 func main() {
 
-	flag.StringVar(&c.Dest, "d", ".", "Destination directory")
-	flag.StringVar(&c.Url, "u", unset, "YouTube URL")
-	flag.StringVar(&c.Title, "t", unset, "Title")
-	flag.StringVar(&c.Author, "a", unset, "Author")
+	flag.StringVar(&c.Dest, "d", ".", "Destination `directory`")
+	flag.StringVar(&c.Url, "u", unset, "YouTube `URL`")
+	flag.StringVar(&c.Title, "t", unset, "Audiobook's `title`")
+	flag.StringVar(&c.Author, "a", unset, "Audiobook's `author`")
 	flag.Parse()
+	if len(flag.Args()) == 0 {
+		flag.PrintDefaults()
+		return
+	}
 	if _, err := os.Stat(c.Dest); os.IsNotExist(err) {
 		fmt.Println("Destination directory not found:", c.Dest)
 		return
