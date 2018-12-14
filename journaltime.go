@@ -11,6 +11,7 @@ var dbg bool
 
 type Options struct {
 	ShowYear         bool
+	ShowTime         bool
 	EmptyLinesBefore int
 	EmptyLinesAfter  int
 	PrependNumber    int
@@ -22,6 +23,7 @@ var o Options
 
 func main() {
 	flag.BoolVar(&dbg, "debug", false, "debug mode")
+	flag.BoolVar(&o.ShowTime, "t", false, "show time")
 	flag.BoolVar(&o.ShowYear, "y", false, "show year")
 	flag.IntVar(&o.EmptyLinesBefore, "b", 0, "number of lines to insert before displaying date")
 	flag.IntVar(&o.EmptyLinesAfter, "a", 0, "number of lines to insert after displaying date")
@@ -52,10 +54,12 @@ func display(o Options) {
 		fmt.Printf("%s %d %s", now.Weekday(), now.Day(), now.Month())
 	}
 	if o.ShowYear {
-		fmt.Printf(" %d\n", now.Year())
-	} else {
-		fmt.Println()
+		fmt.Printf(" %d", now.Year())
 	}
+	if o.ShowTime {
+		fmt.Printf(" %02d:%02d:%02d", now.Hour(), now.Minute(), now.Second())
+	}
+	fmt.Println()
 	for i := 0; i < o.EmptyLinesAfter; i++ {
 		fmt.Println()
 	}
