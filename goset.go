@@ -34,7 +34,6 @@ func main() {
 		return
 	}
 	config.GoInstalledVersion = getGoInstalledVersion()
-	fmt.Println("Currently installed go version:", config.GoInstalledVersion)
 	if len(os.Args) == 1 {
 		usage()
 		return
@@ -121,6 +120,7 @@ func getGoInstalledVersion() string {
 }
 
 func usage() {
+	fmt.Println("Currently installed go version:", config.GoInstalledVersion)
 	fmt.Println("Usage: goset <go version>")
 	fmt.Println("example: goset 1.11.5")
 }
