@@ -2,22 +2,26 @@ package main
 
 import (
 	"fmt"
-	"github.com/PuerkitoBio/goquery"
 	"log"
 	"os"
-	"strings"
+
+	"github.com/PuerkitoBio/goquery"
 )
+
+type Synonym struct {
+	Index int
+	Word  string
+}
 
 func init() {
 	log.SetFlags(log.Lshortfile)
 }
 
 func main() {
-
 	word := getWord()
 	synonyms := getSynos(word)
-	for idx, synonym := range synonyms {
-		fmt.Printf("[%03d] %s ", idx, synonym)
+	for _, synonym := range synonyms {
+		fmt.Printf("[%03d] %s ", synonym.Index, synonym.Word)
 	}
 	fmt.Println()
 }
@@ -29,19 +33,17 @@ func getWord() string {
 	return os.Args[1]
 }
 
-func getSynos(word string) []string {
-	var synonyms []string
-	url := fmt.Sprintf("http://www.synonymo.fr/synonyme/%s", word)
+func getSynos(word string) (synonyms []Synonym) {
+	url := fmt.Sprintf("https://www.cnrtl.fr/synonymie/%s", word)
 	doc, err := goquery.NewDocument(url)
 	if err != nil {
 		log.Fatal(err)
 	}
-	ulSelection := doc.Find("ul")
-	current := ulSelection.Eq(0)
-	liSelection := current.Find("li")
-	for idx := range liSelection.Nodes {
-		word := liSelection.Eq(idx)
-		synonyms = append(synonyms, strings.TrimSpace(word.Text()))
-	}
-	return synonyms
+	doc.Find(".syno_format").Each(func(i int, s *goquery.Selection) {
+		var synonym Synonym
+		synonym.Index = i + 1
+		synonym.Word = s.Text()
+		synonyms = append(synonyms, synonym)
+	})
+	return
 }
