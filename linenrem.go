@@ -37,7 +37,7 @@ func main() {
 	flag.Usage = usage
 	flag.Parse()
 	if dbg {
-		tools.PrintRed("[DEBUG MODE ON]")
+		tools.PrintRedln("[DEBUG MODE ON]")
 	}
 	var abspath string
 	if abspath, err = filepath.Abs(file); err != nil {
@@ -50,7 +50,7 @@ func main() {
 	}
 	debug("input: %#v\n", input)
 	if err = process(input); err != nil {
-		tools.PrintRed("*** FAILED ***")
+		tools.PrintRedln("*** FAILED ***")
 		fmt.Println(err)
 	}
 }
