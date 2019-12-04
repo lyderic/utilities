@@ -1,11 +1,13 @@
 package main
 
 import (
+	"flag"
 	"fmt"
-	"github.com/tatsushid/go-fastping"
 	"log"
 	"net"
 	"time"
+
+	"github.com/tatsushid/go-fastping"
 )
 
 func init() {
@@ -13,9 +15,11 @@ func init() {
 }
 
 func main() {
+	network := flag.String("network", "192.168.1", "network to ping")
+	flag.Parse()
 	p := fastping.NewPinger()
 	for i := 1; i < 255; i++ {
-		ip := fmt.Sprintf("192.168.1.%d", i)
+		ip := fmt.Sprintf("%s.%d", *network, i)
 		ra, err := net.ResolveIPAddr("ip4:icmp", ip)
 		if err != nil {
 			log.Fatal(err)
