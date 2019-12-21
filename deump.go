@@ -23,6 +23,7 @@ func init() {
 		"RESTIC",
 		"SSA",
 		"SSH",
+		"SSK",
 		"SUBB",
 		"TMOUT",
 		"VAULT",
