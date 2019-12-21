@@ -17,6 +17,7 @@ main() {
 copy-to-remote() {
 	echo "ANSIBLE: utility=${utility}"
 	cd ${HOME}/repositories/ansible
+	ansible all -o -m setup
 	ansible all -o -m copy -a "src=/dev/shm/${utility}-{{ansible_architecture}} dest=~{{operator}}/bin/${utility} mode=0755"
 }
 
