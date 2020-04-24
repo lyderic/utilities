@@ -16,6 +16,7 @@ func init() {
 		"AWS",
 		"B2",
 		"CLOUDFLARE",
+		"GO",
 		"GPG",
 		"LPASS",
 		"LPPK",
