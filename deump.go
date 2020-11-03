@@ -29,6 +29,7 @@ func init() {
 		"SSK",
 		"SUBB",
 		"TMOUT",
+		"TMUX",
 		"VAULT",
 		"p",
 	}
