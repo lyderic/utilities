@@ -31,6 +31,7 @@ func init() {
 		"TMOUT",
 		"TMUX",
 		"VAULT",
+		"XDG",
 		"p",
 	}
 }
