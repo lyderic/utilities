@@ -15,12 +15,14 @@ import (
 )
 
 var (
-	dryrun bool
+	recursive bool
+	dryrun    bool
 )
 
 type File struct {
 	Name    string
 	Path    string
+	Info    os.FileInfo
 	Parent  string
 	Newname string
 	Newpath string
@@ -32,6 +34,7 @@ func init() {
 
 func main() {
 
+	flag.BoolVar(&recursive, "r", false, "recurse into subdirectories")
 	flag.BoolVar(&dryrun, "n", false, "dry-run: simulate action only")
 	flag.Usage = usage
 	flag.Parse()
@@ -46,16 +49,24 @@ func main() {
 		tools.PrintYellowln("DRY RUN! No change, simulating only!")
 	}
 
+	var err error
 	for _, path := range paths {
 		var file File
 		file.Path = path
+		file.Info, err = os.Stat(file.Path)
+		if err != nil {
+			tools.PrintRedf("Cannot stat %q. Skipping...\n", file.Path)
+			continue
+		}
+		tools.PrintYellowf("STAT: %#v\n", file.Info)
 		file.Name = filepath.Base(file.Path)
 		file.Parent = filepath.Dir(file.Path)
 		file.Newname = strings.ToLower(toAscii(file.Name))
 		file.Newpath = filepath.Join(file.Parent, file.Newname)
-		err := process(file)
+		err = process(file)
 		if err != nil {
 			tools.PrintRedf("[FAIL] %v\n", err)
+			continue
 		}
 	}
 }
@@ -93,7 +104,7 @@ func isMn(r rune) bool {
 }
 
 func usage() {
-	fmt.Println("Usage: [-n] asciismall <files...>")
+	fmt.Println("Usage: [-r] [-n] asciismall <files...>")
 	flag.PrintDefaults()
 	fmt.Println("This program converts file names to lower case and no non-ascii characters")
 }
