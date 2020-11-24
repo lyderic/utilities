@@ -15,80 +15,76 @@ import (
 )
 
 var (
-	recursive bool
-	dryrun    bool
+	dryrun bool
 )
-
-type File struct {
-	Name    string
-	Path    string
-	Info    os.FileInfo
-	Parent  string
-	Newname string
-	Newpath string
-}
 
 func init() {
 	log.SetFlags(log.Lshortfile)
 }
 
 func main() {
-
-	flag.BoolVar(&recursive, "r", false, "recurse into subdirectories")
 	flag.BoolVar(&dryrun, "n", false, "dry-run: simulate action only")
 	flag.Usage = usage
 	flag.Parse()
-	paths := flag.Args()
-
-	if len(paths) == 0 {
+	inputs := flag.Args()
+	if len(inputs) == 0 {
 		usage()
 		os.Exit(3)
 	}
-
 	if dryrun {
 		tools.PrintYellowln("DRY RUN! No change, simulating only!")
 	}
-
-	var err error
-	for _, path := range paths {
-		var file File
-		file.Path = path
-		file.Info, err = os.Stat(file.Path)
+	for _, input := range inputs {
+		finfo, err := os.Stat(input)
 		if err != nil {
-			tools.PrintRedf("Cannot stat %q. Skipping...\n", file.Path)
+			tools.PrintRedf("%q: invalid input. Skipping...\n", input)
 			continue
 		}
-		tools.PrintYellowf("STAT: %#v\n", file.Info)
-		file.Name = filepath.Base(file.Path)
-		file.Parent = filepath.Dir(file.Path)
-		file.Newname = strings.ToLower(toAscii(file.Name))
-		file.Newpath = filepath.Join(file.Parent, file.Newname)
-		err = process(file)
+		if finfo.IsDir() {
+			err = processDir(input)
+		} else {
+			err = processPath(input)
+		}
 		if err != nil {
-			tools.PrintRedf("[FAIL] %v\n", err)
+			tools.PrintRedf("Error processing input %q: %v\n", input, err)
 			continue
 		}
 	}
 }
 
-func process(file File) (err error) {
-	if _, err = os.Stat(file.Path); os.IsNotExist(err) {
-		return fmt.Errorf("%q: file not found", file.Path)
+func processDir(dirpath string) (err error) {
+	err = filepath.Walk(dirpath, func(path string, finfo os.FileInfo, err error) error {
+		if finfo.IsDir() {
+			fmt.Printf("%q is a directory: conversion skipped...\n", path)
+			return nil
+		}
+		return processPath(path)
+	})
+	return
+}
+
+func processPath(path string) (err error) {
+	if _, err = os.Stat(path); os.IsNotExist(err) {
+		return fmt.Errorf("%q: file not found", path)
 	}
-	if file.Newname == file.Name {
-		fmt.Printf("%q: no change\n", file.Name)
+	name := filepath.Base(path)
+	parent := filepath.Dir(path)
+	newname := strings.ToLower(toAscii(name))
+	newpath := filepath.Join(parent, newname)
+	if newname == name {
+		fmt.Printf("%q: no change\n", name)
 		return
 	}
-	if _, err = os.Stat(file.Newpath); os.IsNotExist(err) {
+	if _, err = os.Stat(newpath); os.IsNotExist(err) {
 		if dryrun {
-			tools.PrintYellowf("[DRY-RUN] %s -> %s\n", file.Path, file.Newpath)
+			tools.PrintYellowf("[DRY-RUN] %s -> %s\n", path, newpath)
 			return nil
 		} else {
-			fmt.Println(file.Path, "->", file.Newpath)
-			return os.Rename(file.Path, file.Newpath)
+			fmt.Println(path, "->", newpath)
+			return os.Rename(path, newpath)
 		}
 	} else {
-		fmt.Printf("%q: file already exists. Not overwritten!\n", file.Name)
+		fmt.Printf("%q: file already exists. Not overwritten!\n", name)
 	}
 	return
 }
@@ -104,7 +100,8 @@ func isMn(r rune) bool {
 }
 
 func usage() {
-	fmt.Println("Usage: [-r] [-n] asciismall <files...>")
+	fmt.Println("Usage: [-r] [-n] asciismall <files...> <directories...>")
 	flag.PrintDefaults()
 	fmt.Println("This program converts file names to lower case and no non-ascii characters")
+	fmt.Println("Directories are processed recursively. Directory names are NOT converted")
 }
