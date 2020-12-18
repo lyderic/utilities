@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"sort"
 	"strings"
 	"text/tabwriter"
 )
@@ -41,14 +42,19 @@ func main() {
 }
 
 func deump() {
-	w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', 0)
+	var listing []string
 	for _, envvar := range os.Environ() {
 		for _, key := range keys {
 			if strings.HasPrefix(envvar, key) {
-				bits := strings.Split(envvar, "=")
-				fmt.Fprintf(w, "%s\t%s\n", bits[0], bits[1])
+				listing = append(listing, envvar)
 			}
 		}
+	}
+	sort.Strings(listing)
+	w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', 0)
+	for _, envvar := range listing {
+		bits := strings.Split(envvar, "=")
+		fmt.Fprintf(w, "%s\t%s\n", bits[0], bits[1])
 	}
 	w.Flush()
 }
