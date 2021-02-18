@@ -16,6 +16,7 @@ func init() {
 	keys = []string{
 		"AWS",
 		"B2",
+		"BW",
 		"CLOUDFLARE",
 		"GO",
 		"GPG",
