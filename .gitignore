@@ -17,7 +17,6 @@ numcpu
 passtest-rclone
 pingall
 sanitize
-syno
 vmount-monitor
 
 test*
