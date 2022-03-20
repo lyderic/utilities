@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"os"
@@ -12,26 +13,42 @@ import (
 	"github.com/jedib0t/go-pretty/v6/table"
 )
 
+// flags
+var (
+	debug bool
+	nocol bool
+)
+
 func init() {
 	log.SetFlags(log.Lshortfile)
 }
 
 func main() {
-	if len(os.Args) == 1 {
-		log.Fatalln("Please provide a French word as argument!")
+	flag.BoolVar(&debug, "d", false, "show debugging information")
+	flag.BoolVar(&nocol, "n", false, "display synonyms without using columns")
+	flag.Usage = usage
+	flag.Parse()
+	if flag.NArg() == 0 {
+		usage()
+		return
 	}
-	synonyms := getSynonyms(os.Args[1:])
+	synonyms := getSynonyms(flag.Args())
 	ln := len(synonyms)
 	fmt.Printf("found %d synonym%s:\n", ln, Ternary(ln > 1, "s", ""))
-	/*
+	if debug {
 		for idx, synonym := range synonyms {
-			Green("[%02d:%s]", idx, synonym)
+			Cyan("[%02d:%s]", idx, synonym)
 		}
 		fmt.Println()
-	*/
+	}
+	if nocol {
+		for _, synonym := range synonyms {
+			fmt.Println(synonym)
+		}
+		return
+	}
 	t := table.NewWriter()
 	t.SetOutputMirror(os.Stdout)
-	//t.SetStyle(table.StyleLight)
 	t.SetStyle(NoStyle)
 	for i := 0; i < len(synonyms); i++ {
 		one := synonyms[i]
@@ -56,6 +73,11 @@ func getSynonyms(args []string) (synonyms []string) {
 		synonyms = append(synonyms, s.Text())
 	})
 	return
+}
+
+func usage() {
+	fmt.Println("syno [-d] [-n] <word(s)>")
+	flag.PrintDefaults()
 }
 
 var NoStyle = table.Style{
