@@ -1,0 +1,721 @@
+---
+- verbe: abandonner
+  identifiants: [ abandon, reprise ]
+- verbe: abdiquer
+  identifiants: [ abandon ]
+- verbe: abjurer
+  identifiants: [ abandon ]
+- verbe: aboyer
+  identifiants: [ mauvaise humeur, méchant ]
+- verbe: abréger
+  identifiants: [ interruption ]
+- verbe: accepter
+  identifiants: [ approbation ]
+- verbe: acclamer
+  identifiants: [ fort, acceptation ]
+- verbe: accorder
+  identifiants: [ consentement, conciliation ]
+- verbe: accuser
+  identifiants: [ accusation ]
+- verbe: achever
+  identifiants: [ continuation, fin ]
+- verbe: acquiescer
+  identifiants: [ approbation ]
+- verbe: admettre
+  identifiants: [ approbation ]
+- verbe: admirer
+  identifiants: [ admiration ]
+- verbe: affirmer
+  identifiants: [ affirmation ]
+- verbe: agioter
+  identifiants: [ soliloque ]
+- verbe: ahaner
+  identifiants: [ essoufflement ]
+- verbe: ajouter
+  identifiants: [ continuation, reprise ]
+- verbe: annoncer
+  identifiants: [ annonce ]
+- verbe: apostropher
+  identifiants: [ interruption, fortement, apostrophe ]
+- verbe: appeler
+  identifiants: [ apostrophe ]
+- verbe: apprendre
+  identifiants: [ neutre ]
+- verbe: approuver
+  identifiants: [ approbation ]
+- verbe: appréhender
+  identifiants: [ crainte ]
+- verbe: appuyer
+  identifiants: [ insistance ]
+- verbe: articuler
+  identifiants: [ distinctement ]
+- verbe: assurer
+  identifiants: [ assurance ]
+- verbe: attaquer
+  identifiants: [ confrontation, antagonisme, fortement, domination, malveillance ]
+- verbe: avancer
+  identifiants: [ tentative, approbation ]
+- verbe: avertir
+  identifiants: [ crainte, avertissement ]
+- verbe: avouer
+  identifiants: [ aveu, approbation, consentement, conciliation ]
+- verbe: babiller
+  identifiants: [ indistinctement, bredouillage, confusion, enfance ]
+- verbe: badiner
+  identifiants: [ séduire ]
+- verbe: bafouiller
+  identifiants: [ indistinctement, bredouillage, confusion ]
+- verbe: balbutier
+  identifiants: [ indistinctement, bredouillage, confusion ]
+- verbe: baragouiner
+  identifiants: [ indistinctement, bredouillage, confusion ]
+- verbe: batifoler
+  identifiants: [ séduction ]
+- verbe: bavarder
+  identifiants: [ neutre, parler beaucoup ]
+- verbe: bavasser
+  identifiants: [ neutre, parler beaucoup ]
+- verbe: baver
+  identifiants: [ envie, traîtrise ]
+- verbe: beugler
+  identifiants: [ fortement, alcool, chant ]
+- verbe: blaguer
+  identifiants: [ humour ]
+- verbe: blasphémer
+  identifiants: [ religieux ]
+- verbe: bougonner
+  identifiants: [ indistinctement, humeur ]
+- verbe: brailler
+  identifiants: [ fortement, alcool, chant ]
+- verbe: braire
+  identifiants: [ lamentation ]
+- verbe: bramer
+  identifiants: [ fortement, lamentation ]
+- verbe: bredouiller
+  identifiants: [ ton, indistinctement, bredouillage, confusion ]
+- verbe: bégayer
+  identifiants: [ ton, indistinctement, bredouillage, confusion ]
+- verbe: calmer
+  identifiants: [ apaisement, faiblement ]
+- verbe: cancaner
+  identifiants: [ ragots, malveillance ]
+- verbe: capituler
+  identifiants: [ conciliation, consentement, capitulation ]
+- verbe: caqueter
+  identifiants: [ ragots, malveillance, pipelette ]
+- verbe: catéchiser
+  identifiants: [ moralisateur, religieux ]
+- verbe: certifier
+  identifiants: [ assurance ]
+- verbe: chanter
+  identifiants: [ chant ]
+- verbe: chantonner
+  identifiants: [ chant ]
+- verbe: chevroter
+  identifiants: [ faiblement, vieillard ]
+- verbe: chipoter
+  identifiants: [ marchandage ]
+- verbe: chuchoter
+  identifiants: [ faiblement ]
+- verbe: chuinter
+  identifiants: [ strident ]
+- verbe: citer
+  identifiants: [ citation ]
+- verbe: claironner
+  identifiants: [ fortement, assurance ]
+- verbe: clamer
+  identifiants: [ fortement, assurance ]
+- verbe: colporter
+  identifiants: [ ragots ]
+- verbe: commander
+  identifiants: [ injonction, fortement ]
+- verbe: commencer
+  identifiants: [ énoncé, commencement, début ]
+- verbe: commenter
+  identifiants: [ commentaire ]
+- verbe: commérer
+  identifiants: [ ragots ]
+- verbe: compatir
+  identifiants: [ pitié ]
+- verbe: compter
+  identifiants: [ compte ]
+- verbe: conclure
+  identifiants: [ conclusion, fin ]
+- verbe: confirmer
+  identifiants: [ confirmation ]
+- verbe: conférer
+  identifiants: [ conversation ]
+- verbe: conseiller
+  identifiants: [ conseil ]
+- verbe: constater
+  identifiants: [ constat ]
+- verbe: conter
+  identifiants: [ récit ]
+- verbe: contester
+  identifiants: [ contestation, refus, opposition ]
+- verbe: continuer
+  identifiants: [ poursuite ]
+- verbe: contredire
+  identifiants: [ contradiction, interruption ]
+- verbe: convenir
+  identifiants: [ approbation ]
+- verbe: converser
+  identifiants: [ conversation ]
+- verbe: corriger
+  identifiants: [ correction, interruption ]
+- verbe: couper
+  identifiants: [ interruption, impatience ]
+- verbe: cracher
+  identifiants: [ ragots, malveillance ]
+- verbe: crier
+  identifiants: [ fortement ]
+- verbe: critiquer
+  identifiants: [ critique, interruption ]
+- verbe: céder
+  identifiants: [ approbation, consentement, conciliation, capitulation ]
+- verbe: demander
+  identifiants: [ interrogation, injonction ]
+- verbe: deviner
+  identifiants: [ tentative, déduction ]
+- verbe: dialoguer
+  identifiants: [ conversation ]
+- verbe: dicter
+  identifiants: [ écriture ]
+- verbe: dire
+  identifiants: [ discours ]
+- verbe: discourir
+  identifiants: [ discours, conversation ]
+- verbe: discuter
+  identifiants: [ dialogue, réfutation, désapprobation ]
+- verbe: dramatiser
+  identifiants: [ exagération ]
+- verbe: débiter
+  identifiants: [ distinctement ]
+- verbe: déblatérer
+  identifiants: [ humeur ]
+- verbe: débuter
+  identifiants: [ début, commencement ]
+- verbe: décider
+  identifiants: [ décision ]
+- verbe: déclamer
+  identifiants: [ ton, distinctement ]
+- verbe: déclarer
+  identifiants: [ neutre ]
+- verbe: décrire
+  identifiants: [ description ]
+- verbe: déduire
+  identifiants: [ déduction ]
+- verbe: défier
+  identifiants: [ défi ]
+- verbe: dénier
+  identifiants: [ désapprobation ]
+- verbe: dénoncer
+  identifiants: [ justice ]
+- verbe: dévoiler
+  identifiants: [ déduction ]
+- verbe: en déduire
+  identifiants: [ déduction ]
+- verbe: enchaîner
+  identifiants: [ continuation ]
+- verbe: encourager
+  identifiants: [ encouragement, ton ]
+- verbe: envoyer
+  identifiants: [ ton, voix vive ]
+- verbe: essayer
+  identifiants: [ tentative ]
+- verbe: exagérer
+  identifiants: [ exagération ]
+- verbe: excuser
+  identifiants: [ excuse, ton ]
+- verbe: exiger
+  identifiants: [ injonction ]
+- verbe: expliquer
+  identifiants: [ explication ]
+- verbe: exploser
+  identifiants: [ humeur ]
+- verbe: exprimer
+  identifiants: [ ton, distinctement, clairement ]
+- verbe: faire
+  identifiants: [  ]
+- verbe: feuler
+  identifiants: [  ]
+- verbe: finir
+  identifiants: [  ]
+- verbe: fredonner
+  identifiants: [  ]
+- verbe: frissonner
+  identifiants: [  ]
+- verbe: frémir
+  identifiants: [  ]
+- verbe: fulminer
+  identifiants: [ humeur ]
+- verbe: féliciter
+  identifiants: [  ]
+- verbe: gargouiller
+  identifiants: [  ]
+- verbe: gazouiller
+  identifiants: [  ]
+- verbe: geindre
+  identifiants: [  ]
+- verbe: glapir
+  identifiants: [  ]
+- verbe: glisser
+  identifiants: [  ]
+- verbe: grasseyer
+  identifiants: [  ]
+- verbe: grincer
+  identifiants: [  ]
+- verbe: grogner
+  identifiants: [ humeur ]
+- verbe: grommeler
+  identifiants: [ ton, indistinctement ]
+- verbe: gronder
+  identifiants: [  ]
+- verbe: gueuler
+  identifiants: [  ]
+- verbe: gémir
+  identifiants: [ douleur, plainte ]
+- verbe: haleter
+  identifiants: [  ]
+- verbe: haranguer
+  identifiants: [  ]
+- verbe: honnir
+  identifiants: [  ]
+- verbe: hoqueter
+  identifiants: [  ]
+- verbe: hululer
+  identifiants: [  ]
+- verbe: hurler
+  identifiants: [ fortement ]
+- verbe: hésiter
+  identifiants: [  ]
+- verbe: ignorer
+  identifiants: [  ]
+- verbe: imiter
+  identifiants: [  ]
+- verbe: implorer
+  identifiants: [ douleur, plainte, injonction ]
+- verbe: imposer
+  identifiants: [  ]
+- verbe: imputer
+  identifiants: [  ]
+- verbe: indiquer
+  identifiants: [  ]
+- verbe: informer
+  identifiants: [  ]
+- verbe: injurier
+  identifiants: [  ]
+- verbe: insinuer
+  identifiants: [ suggestion ]
+- verbe: insister
+  identifiants: [ insistance ]
+- verbe: interdire
+  identifiants: [  ]
+- verbe: interpeller
+  identifiants: [  ]
+- verbe: interroger
+  identifiants: [  ]
+- verbe: interrompre
+  identifiants: [ interruption, impatience ]
+- verbe: intervenir
+  identifiants: [ interruption, reprise ]
+- verbe: invectiver
+  identifiants: [ humeur ]
+- verbe: ironiser
+  identifiants: [ ironie ]
+- verbe: jacasser
+  identifiants: [  ]
+- verbe: jacter
+  identifiants: [  ]
+- verbe: japper
+  identifiants: [  ]
+- verbe: jaser
+  identifiants: [  ]
+- verbe: jeter
+  identifiants: [  ]
+- verbe: juger
+  identifiants: [  ]
+- verbe: jurer
+  identifiants: [ humeur ]
+- verbe: lamenter
+  identifiants: [  ]
+- verbe: lancer
+  identifiants: [  ]
+- verbe: lire
+  identifiants: [  ]
+- verbe: lâcher
+  identifiants: [  ]
+- verbe: mander
+  identifiants: [  ]
+- verbe: marmonner
+  identifiants: [ ton, faiblement, indistinctement ]
+- verbe: marmotter
+  identifiants: [  ]
+- verbe: maudire
+  identifiants: [ humeur ]
+- verbe: maugréer
+  identifiants: [ humeur ]
+- verbe: mentir
+  identifiants: [  ]
+- verbe: meugler
+  identifiants: [  ]
+- verbe: miauler
+  identifiants: [  ]
+- verbe: minauder
+  identifiants: [  ]
+- verbe: modifier
+  identifiants: [  ]
+- verbe: modérer
+  identifiants: [  ]
+- verbe: monologuer
+  identifiants: [  ]
+- verbe: moraliser
+  identifiants: [  ]
+- verbe: mugir
+  identifiants: [  ]
+- verbe: murmurer
+  identifiants: [ faiblement ]
+- verbe: médire
+  identifiants: [  ]
+- verbe: méditer
+  identifiants: [ soliloque ]
+- verbe: narrer
+  identifiants: [  ]
+- verbe: nier
+  identifiants: [ désapprobation ]
+- verbe: nommer
+  identifiants: [  ]
+- verbe: noter
+  identifiants: [  ]
+- verbe: objecter
+  identifiants: [ désaccord ]
+- verbe: obliger
+  identifiants: [  ]
+- verbe: observer
+  identifiants: [  ]
+- verbe: offenser
+  identifiants: [  ]
+- verbe: omettre
+  identifiants: [  ]
+- verbe: opiner
+  identifiants: [  ]
+- verbe: ordonner
+  identifiants: [ injonction ]
+- verbe: oser
+  identifiants: [  ]
+- verbe: oublier
+  identifiants: [  ]
+- verbe: palabrer
+  identifiants: [  ]
+- verbe: papoter
+  identifiants: [  ]
+- verbe: pardonner
+  identifiants: [  ]
+- verbe: parler
+  identifiants: [  ]
+- verbe: passer
+  identifiants: [  ]
+- verbe: penser
+  identifiants: [ soliloque ]
+- verbe: persifler
+  identifiants: [  ]
+- verbe: pester
+  identifiants: [ humeur ]
+- verbe: philosopher
+  identifiants: [ soliloque ]
+- verbe: piailler
+  identifiants: [  ]
+- verbe: pinailler
+  identifiants: [  ]
+- verbe: pipeletter
+  identifiants: [  ]
+- verbe: piper
+  identifiants: [  ]
+- verbe: plaindre
+  identifiants: [  ]
+- verbe: planifier
+  identifiants: [  ]
+- verbe: pleurer
+  identifiants: [ ton, plainte ]
+- verbe: pleurnicher
+  identifiants: [ ton, plainte ]
+- verbe: poursuivre
+  identifiants: [ reprise, continuation ]
+- verbe: prier
+  identifiants: [ injonction ]
+- verbe: proclamer
+  identifiants: [  ]
+- verbe: proférer
+  identifiants: [  ]
+- verbe: promettre
+  identifiants: [  ]
+- verbe: prononcer
+  identifiants: [ distinctement ]
+- verbe: proposer
+  identifiants: [  ]
+- verbe: protester
+  identifiants: [ désaccord, indignation ]
+- verbe: préciser
+  identifiants: [ reprise, continuation ]
+- verbe: présenter
+  identifiants: [  ]
+- verbe: prétendre
+  identifiants: [  ]
+- verbe: prétexter
+  identifiants: [  ]
+- verbe: psalmodier
+  identifiants: [  ]
+- verbe: pérorer
+  identifiants: [  ]
+- verbe: qualifier
+  identifiants: [  ]
+- verbe: quereller
+  identifiants: [  ]
+- verbe: questionner
+  identifiants: [ interrogation ]
+- verbe: quémander
+  identifiants: [  ]
+- verbe: quérir
+  identifiants: [  ]
+- verbe: quêter
+  identifiants: [  ]
+- verbe: raconter
+  identifiants: [  ]
+- verbe: rager
+  identifiants: [ humeur ]
+- verbe: railler
+  identifiants: [ ironie ]
+- verbe: raisonner
+  identifiants: [ soliloque, tentative ]
+- verbe: rajouter
+  identifiants: [  ]
+- verbe: rappeler
+  identifiants: [  ]
+- verbe: rassurer
+  identifiants: [  ]
+- verbe: recommander
+  identifiants: [ conseil ]
+- verbe: rectifier
+  identifiants: [  ]
+- verbe: refuser
+  identifiants: [  ]
+- verbe: regretter
+  identifiants: [  ]
+- verbe: rejeter
+  identifiants: [  ]
+- verbe: remarquer
+  identifiants: [  ]
+- verbe: renchérir
+  identifiants: [  ]
+- verbe: repartir
+  identifiants: [ reprise, réponse ]
+- verbe: reprendre
+  identifiants: [ reprise, continuation ]
+- verbe: reprocher
+  identifiants: [  ]
+- verbe: ricaner
+  identifiants: [  ]
+- verbe: rigoler
+  identifiants: [  ]
+- verbe: riposter
+  identifiants: [ reprise, réponse ]
+- verbe: rire
+  identifiants: [ ironie, moquerie ]
+- verbe: ronchonner
+  identifiants: [ humeur ]
+- verbe: rougir
+  identifiants: [  ]
+- verbe: rouspéter
+  identifiants: [ humeur ]
+- verbe: rugir
+  identifiants: [ fortement, indignation, colère ]
+- verbe: râler
+  identifiants: [ humeur ]
+- verbe: réagir
+  identifiants: [  ]
+- verbe: réciter
+  identifiants: [  ]
+- verbe: réclamer
+  identifiants: [  ]
+- verbe: récriminer
+  identifiants: [ reprise ]
+- verbe: réfléchir
+  identifiants: [ soliloquer ]
+- verbe: réfuter
+  identifiants: [  ]
+- verbe: régulariser
+  identifiants: [  ]
+- verbe: répliquer
+  identifiants: [ reprise, réponse ]
+- verbe: répondre
+  identifiants: [ reprise, réponse ]
+- verbe: réprimander
+  identifiants: [  ]
+- verbe: répéter
+  identifiants: [ reprise, continuation, répétition ]
+- verbe: résumer
+  identifiants: [  ]
+- verbe: rétorquer
+  identifiants: [ reprise, réponse ]
+- verbe: révéler
+  identifiants: [  ]
+- verbe: s'abstenir
+  identifiants: [  ]
+- verbe: s'assurer
+  identifiants: [  ]
+- verbe: s'attrister 
+  identifiants: [  ]
+- verbe: s'emporter
+  identifiants: [ humeur ]
+- verbe: s'enflammer
+  identifiants: [  ]
+- verbe: s'enquérir
+  identifiants: [ interrogation ]
+- verbe: s'esclaffer
+  identifiants: [  ]
+- verbe: s'exclamer
+  identifiants: [ fortement ]
+- verbe: s'excuser
+  identifiants: [  ]
+- verbe: s'expliquer
+  identifiants: [  ]
+- verbe: s'immiscer
+  identifiants: [  ]
+- verbe: s'impatienter
+  identifiants: [  ]
+- verbe: s'indigner
+  identifiants: [ indignation, humeur ]
+- verbe: s'informer
+  identifiants: [ interrogation ]
+- verbe: s'inquiéter
+  identifiants: [  ]
+- verbe: s'interroger
+  identifiants: [ soliloque, interrogation ]
+- verbe: s'intéresser
+  identifiants: [  ]
+- verbe: s'opposer
+  identifiants: [  ]
+- verbe: s'écrier
+  identifiants: [ fortement ]
+- verbe: s'égosiller
+  identifiants: [ fortement ]
+- verbe: s'énerver
+  identifiants: [ énervement ]
+- verbe: s'époumoner
+  identifiants: [ fortement ]
+- verbe: s'étonner
+  identifiants: [ étonnement ]
+- verbe: s'étouffer
+  identifiants: [ essoufflement, indignation ]
+- verbe: s'étrangler
+  identifiants: [ indignation ]
+- verbe: sangloter
+  identifiants: [ faiblement, plainte ]
+- verbe: scander
+  identifiants: [  ]
+- verbe: se demander
+  identifiants: [ soliloquer, interrogation ]
+- verbe: se dire
+  identifiants: [ soliloque ]
+- verbe: se gausser
+  identifiants: [  ]
+- verbe: se lamenter
+  identifiants: [  ]
+- verbe: se marrer
+  identifiants: [  ]
+- verbe: se moquer
+  identifiants: [ ironie ]
+- verbe: se moquer de
+  identifiants: [  ]
+- verbe: se morigéner
+  identifiants: [  ]
+- verbe: se plaindre
+  identifiants: [ ton, plainte, humeur ]
+- verbe: se précipiter
+  identifiants: [  ]
+- verbe: se pâmer
+  identifiants: [  ]
+- verbe: se questionner
+  identifiants: [  ]
+- verbe: se rassurer
+  identifiants: [  ]
+- verbe: se renseigner
+  identifiants: [ interrogation ]
+- verbe: se reprendre
+  identifiants: [  ]
+- verbe: se récrier
+  identifiants: [ fortement, opposition, reprise ]
+- verbe: se réjouir
+  identifiants: [  ]
+- verbe: se vanter
+  identifiants: [  ]
+- verbe: siffler
+  identifiants: [ indignation, ironie ]
+- verbe: signer
+  identifiants: [  ]
+- verbe: singer
+  identifiants: [  ]
+- verbe: soliloquer
+  identifiants: [ soliloque ]
+- verbe: songer
+  identifiants: [ soliloque ]
+- verbe: souffler
+  identifiants: [ faiblement ]
+- verbe: soupirer
+  identifiants: [  ]
+- verbe: sourire
+  identifiants: [  ]
+- verbe: soutenir
+  identifiants: [ insistance, conviction ]
+- verbe: spéculer
+  identifiants: [ soliloque, tentative ]
+- verbe: suffoquer
+  identifiants: [  ]
+- verbe: suggérer
+  identifiants: [ suggestion ]
+- verbe: supplier
+  identifiants: [ douleur, injonction ]
+- verbe: susurrer
+  identifiants: [ faiblement ]
+- verbe: tancer
+  identifiants: [  ]
+- verbe: taquiner
+  identifiants: [  ]
+- verbe: tempêter
+  identifiants: [ humeur ]
+- verbe: tenter
+  identifiants: [  ]
+- verbe: tergiverser
+  identifiants: [  ]
+- verbe: terminer
+  identifiants: [  ]
+- verbe: titiller
+  identifiants: [  ]
+- verbe: tonitruer
+  identifiants: [  ]
+- verbe: tonner
+  identifiants: [  ]
+- verbe: trancher
+  identifiants: [ décision ]
+- verbe: trembler
+  identifiants: [  ]
+- verbe: vilipender
+  identifiants: [  ]
+- verbe: vitupérer
+  identifiants: [ humeur ]
+- verbe: vociférer
+  identifiants: [ fortement ]
+- verbe: vérifier
+  identifiants: [  ]
+- verbe: zozoter
+  identifiants: [  ]
+- verbe: zézayer
+  identifiants: [  ]
+- verbe: ânonner
+  identifiants: [  ]
+- verbe: écrire
+  identifiants: [  ]
+- verbe: épeler
+  identifiants: [  ]
+- verbe: évaluer
+  identifiants: [  ]

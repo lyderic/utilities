@@ -1,0 +1,64 @@
+---
+
+- description: au lieu de « dire »
+  exemples: [ dire, affirmer, annoncer, apprendre, conclure, confirmer, déclarer, dévoiler, expliquer, noter, préciser, raconter, révéler, observer ]
+
+- description: reprise du dialogue
+  exemples: [ reprendre, ajouter, poursuivre, préciser, répéter ]
+
+- description: le personnage se parle à lui-même
+  exemples: [ se dire, songer, penser, réfléchir, raisonner, spéculer, philosopher, méditer, agioter ]
+
+- description: manière dont le personnage s'exprime
+  exemples: [ marmonner, bougonner, grommeler, pleurnicher, bredouiller, bégayer ]
+
+- description: voix forte
+  exemples: [ crier, s'écrier, se récrier, hurler, s'exclamer, s'égosiller, vociférer, rugir ]
+
+- description: voix faible
+  exemples: [ murmurer, chuchoter, susurrer, souffler ]
+
+- description: articulation distincte
+  exemples: [ prononcer, articuler, déclamer ]
+
+- description: articulation indistincte
+  exemples: [ marmonner, balbutier, bégayer, bredouiller ]
+
+- description: exprimer l'insistance
+  exemples: [ insister, soutenir ]
+
+- description: exprimer la suggestion
+  exemples: [ suggérer, insinuer ]
+
+- description: exprimer l'accord
+  exemples: [ accepter, approuver ]
+
+- description: exprimer le désaccord
+  exemples: [ objecter, protester, nier ]
+
+- description: exprimer l'impatience
+  exemples: [ couper, interrompre ]
+
+- description: exprimer la mauvaise humeur
+  exemples: [ bougonner, ronchonner, maugréer, pester, fulminer, rouspéter, vitupérer, maudire, s'emporter, grogner, se plaindre, jurer, déblatérer, exploser, rager, tempêter, râler, s'indigner, invectiver ]
+
+- description: exprimer la douleur
+  exemples: [ supplier, gémir, implorer ]
+
+- description: exprimer l'ironie
+  exemples: [ se moquer, railler, ironiser ]
+
+- description: phrase interrogative
+  exemples: [ demander, questionner, interroger, s'enquérir, s'informer, se renseigner ]
+
+- description: phrase exclamative
+  exemples: [ s'écrier, s'exclamer, se récrier, s'indigner ]
+
+- description: réponse ou reprise de parole
+  exemples: [ répondre, répliquer, rétorquer, ajouter, répéter, riposter, repartir, récriminer ]
+
+- description: manière de s'exprimer
+  exemples: [ marmonner, songer ]
+
+- description: phrase injonctive
+  exemples: [ ordonner, exiger, commander, recommander, conseiller, ordonner, prier, ordonner, commander, prier, supplier, implorer ]
