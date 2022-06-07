@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
 )
@@ -41,22 +42,29 @@ func init() {
 }
 
 func main() {
-	if len(os.Args) < 2 {
-		fmt.Println("Usage: cyril <word(s)>")
-		fmt.Println("print word(s) in cyrillic")
+	if len(os.Args) > 2 {
+		for _, latin := range os.Args[1:] {
+			fmt.Print(latin2cyril(latin), " ")
+		}
+		fmt.Println()
 		return
 	}
-
-	for _, lat := range os.Args[1:] {
-		var cyr []rune
-		for _, l := range lat {
-			c := dic[l]
-			if c == 0 {
-				c = l
-			}
-			cyr = append(cyr, c)
-		}
-		fmt.Print(string(cyr), " ")
+	reader := bufio.NewReader(os.Stdin)
+	scanner := bufio.NewScanner(reader)
+	for scanner.Scan() {
+		latin := scanner.Text()
+		fmt.Print(latin2cyril(latin), " ")
 	}
-	fmt.Println()
+}
+
+func latin2cyril(latin string) (cyril string) {
+	var cyr []rune
+	for _, l := range latin {
+		c := dic[l]
+		if c == 0 {
+			c = l
+		}
+		cyr = append(cyr, c)
+	}
+	return string(cyr)
 }
