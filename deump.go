@@ -20,6 +20,7 @@ func init() {
 		"CLOUDFLARE",
 		"GO",
 		"GPG",
+		"GNU",
 		"LPASS",
 		"LPPK",
 		"OBSCURA",
