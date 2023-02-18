@@ -1,11 +1,11 @@
 module syno
 
-go 1.18
+go 1.20
 
 require (
 	github.com/PuerkitoBio/goquery v1.8.0
-	github.com/jedib0t/go-pretty/v6 v6.2.7
-	github.com/lyderic/tools v0.3.8
+	github.com/jedib0t/go-pretty/v6 v6.4.4
+	github.com/lyderic/tools v0.4.2
 )
 
 require (
@@ -21,5 +21,4 @@ require (
 	golang.org/x/net v0.0.0-20220225172249-27dd8689420f // indirect
 	golang.org/x/sys v0.0.0-20211216021012-1d35b9e2eb4e // indirect
 	golang.org/x/text v0.3.7 // indirect
-	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
 )

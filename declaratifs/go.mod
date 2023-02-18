@@ -1,9 +1,9 @@
 module declaratifs
 
-go 1.18
+go 1.20
 
 require (
-	github.com/lyderic/tools v0.3.8
+	github.com/lyderic/tools v0.4.2
 	gopkg.in/yaml.v2 v2.4.0
 )
 
@@ -18,5 +18,5 @@ require (
 	github.com/wayneashleyberry/terminal-dimensions v1.1.0 // indirect
 	golang.org/x/sys v0.0.0-20211216021012-1d35b9e2eb4e // indirect
 	golang.org/x/text v0.3.7 // indirect
-	gopkg.in/yaml.v3 v3.0.0-20220512140231-539c8e751b99 // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

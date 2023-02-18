@@ -1,9 +1,9 @@
 module count
 
-go 1.18
+go 1.20
 
 require (
-	github.com/lyderic/tools v0.3.8
+	github.com/lyderic/tools v0.4.2
 	github.com/olekukonko/tablewriter v0.0.5
 )
 

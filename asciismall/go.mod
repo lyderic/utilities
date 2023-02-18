@@ -1,8 +1,8 @@
 module asciismall
 
-go 1.17
+go 1.20
 
-require github.com/lyderic/tools v0.3.8
+require github.com/lyderic/tools v0.4.2
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
@@ -15,5 +15,5 @@ require (
 	github.com/wayneashleyberry/terminal-dimensions v1.1.0 // indirect
 	golang.org/x/sys v0.0.0-20211216021012-1d35b9e2eb4e // indirect
 	golang.org/x/text v0.3.7 // indirect
-	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
