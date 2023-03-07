@@ -3,8 +3,8 @@ module syno
 go 1.20
 
 require (
-	github.com/PuerkitoBio/goquery v1.8.0
-	github.com/jedib0t/go-pretty/v6 v6.4.4
+	github.com/PuerkitoBio/goquery v1.8.1
+	github.com/jedib0t/go-pretty/v6 v6.4.6
 	github.com/lyderic/tools v0.4.2
 )
 
@@ -18,7 +18,7 @@ require (
 	github.com/sendgrid/rest v2.6.8+incompatible // indirect
 	github.com/sendgrid/sendgrid-go v3.11.0+incompatible // indirect
 	github.com/wayneashleyberry/terminal-dimensions v1.1.0 // indirect
-	golang.org/x/net v0.0.0-20220225172249-27dd8689420f // indirect
-	golang.org/x/sys v0.0.0-20211216021012-1d35b9e2eb4e // indirect
-	golang.org/x/text v0.3.7 // indirect
+	golang.org/x/net v0.7.0 // indirect
+	golang.org/x/sys v0.5.0 // indirect
+	golang.org/x/text v0.7.0 // indirect
 )
