@@ -15,5 +15,6 @@ passtest-rclone
 pingall
 sanitize
 vmount-monitor
+wordfrequency
 
 test*

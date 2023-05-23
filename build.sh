@@ -38,7 +38,6 @@ build() {
 	goarch=${1}
 	ansiblearch=${2}
 	GOARCH=${goarch} \
-	GOBIN=$HOME/go/bin \
 	go build -v -o "${DEST}/${utility}-${ansiblearch}" "${utility}.go"
 	if [ ${goarch} == 'arm' ] ; then
 		ln -sfv ${DEST}/${utility}-armv7l ${DEST}/${utility}-armv6l
