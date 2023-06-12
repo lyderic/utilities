@@ -6,6 +6,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"strings"
 	"sync"
 
 	. "github.com/lyderic/tools"
@@ -51,7 +52,17 @@ func images2pdf(c Configuration) {
 
 func image2pdf(wg *sync.WaitGroup, img string) {
 	defer wg.Done()
-	if filepath.Ext(img) != ".jpg" {
+	var finfo fs.FileInfo
+	var err error
+	finfo, err = os.Stat(img)
+	if err != nil {
+		Yellow("cannot stat image: %q\n", img)
+		return
+	}
+	if finfo.IsDir() {
+		return
+	}
+	if strings.ToLower(filepath.Ext(img)) != ".jpg" {
 		Yellow("%q: not a valid image, skipping\n", img)
 		return
 	}
@@ -64,7 +75,6 @@ func image2pdf(wg *sync.WaitGroup, img string) {
 	if *DRYRUN {
 		return
 	}
-	var err error
 	if err = cmd.Run(); err != nil {
 		Yellow("failed to convert image %q to pdf: %#v\n", img, err)
 	} else {
@@ -85,6 +95,10 @@ func createpdf(c Configuration) {
 		if filepath.Ext(entry.Name()) == ".pdf" {
 			args = append(args, entry.Name())
 		}
+	}
+	if len(args) == 0 {
+		Yellow("no images found in %q for %q. aborting\n", c.Temp, c.Pdf)
+		return
 	}
 	args = append(args, "cat", "output", c.Pdf)
 	cmd := exec.Command("pdftk", args...)
