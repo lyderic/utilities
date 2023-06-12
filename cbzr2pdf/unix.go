@@ -6,7 +6,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
-	"strings"
+	"regexp"
 	"sync"
 
 	. "github.com/lyderic/tools"
@@ -62,7 +62,16 @@ func image2pdf(wg *sync.WaitGroup, img string) {
 	if finfo.IsDir() {
 		return
 	}
-	if strings.ToLower(filepath.Ext(img)) != ".jpg" {
+	if finfo.Name()[0] == '.' {
+		Yellow("%q: file name starts with a dot, ignoring\n", img)
+		return
+	}
+	var fileok bool
+	fileok, err = regexp.MatchString("(?i)jpe?g", filepath.Ext(img))
+	if err != nil {
+		E(err)
+	}
+	if !fileok {
 		Yellow("%q: not a valid image, skipping\n", img)
 		return
 	}
@@ -109,7 +118,7 @@ func createpdf(c Configuration) {
 	if *DRYRUN {
 		return
 	}
-	if cmd.Run(); err != nil {
+	if err = cmd.Run(); err != nil {
 		E(err)
 	}
 	Green("PDF %q successfully created\n", c.Pdf)
