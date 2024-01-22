@@ -3,19 +3,18 @@ package main
 import (
 	"flag"
 	"fmt"
-	"strings"
 	"time"
 )
 
 var dbg bool
 
 type Options struct {
+	Input            string
 	ShowYear         bool
 	ShowTime         bool
 	EmptyLinesBefore int
 	EmptyLinesAfter  int
-	PrependNumber    int
-	PrependSymbol    string
+	Prepend          string
 	Language         string
 }
 
@@ -23,12 +22,12 @@ var o Options
 
 func main() {
 	flag.BoolVar(&dbg, "debug", false, "debug mode")
+	flag.StringVar(&o.Input, "i", "", "input time in the form '%d%m%H%M' (default: now)")
 	flag.BoolVar(&o.ShowTime, "t", false, "show time")
 	flag.BoolVar(&o.ShowYear, "y", false, "show year")
 	flag.IntVar(&o.EmptyLinesBefore, "b", 0, "number of lines to insert before displaying date")
 	flag.IntVar(&o.EmptyLinesAfter, "a", 0, "number of lines to insert after displaying date")
-	flag.IntVar(&o.PrependNumber, "n", 0, "number of symbols to prepend to date")
-	flag.StringVar(&o.PrependSymbol, "s", "#", "symbol to prepend to date")
+	flag.StringVar(&o.Prepend, "s", "", "string to prepend to date")
 	flag.StringVar(&o.Language, "l", "fr", "language")
 	flag.Parse()
 	debug("o: %#v\n", o)
@@ -36,28 +35,40 @@ func main() {
 }
 
 func display(o Options) {
+	var datetime time.Time
+	var err error
 	now := time.Now()
+	yearString := fmt.Sprintf("%d", now.Year())
+	if o.Input == "" {
+		datetime = now
+	} else {
+		if datetime, err = time.Parse("020115042006", o.Input+yearString); err != nil {
+			fmt.Printf("Cannot parse input: %q\n", o.Input)
+			return
+		}
+	}
+	debug("raw datetime: %#v\n", datetime)
 	for i := 0; i < o.EmptyLinesBefore; i++ {
 		fmt.Println()
 	}
-	if o.PrependNumber > 0 {
-		fmt.Print(strings.Repeat(o.PrependSymbol, o.PrependNumber))
+	if o.Prepend != "" {
+		fmt.Print(o.Prepend)
 	}
 	switch o.Language {
 	case "fr":
-		fmt.Printf("%s %d %s", wday_fr[now.Weekday().String()],
-			now.Day(), month_fr[now.Month().String()])
+		fmt.Printf("%s %d %s", wday_fr[datetime.Weekday().String()],
+			datetime.Day(), month_fr[datetime.Month().String()])
 	case "de":
-		fmt.Printf("%s %d %s", wday_de[now.Weekday().String()],
-			now.Day(), month_de[now.Month().String()])
+		fmt.Printf("%s %d %s", wday_de[datetime.Weekday().String()],
+			datetime.Day(), month_de[datetime.Month().String()])
 	default:
-		fmt.Printf("%s %d %s", now.Weekday(), now.Day(), now.Month())
+		fmt.Printf("%s %d %s", datetime.Weekday(), datetime.Day(), datetime.Month())
 	}
 	if o.ShowYear {
-		fmt.Printf(" %d", now.Year())
+		fmt.Printf(" %d", datetime.Year())
 	}
 	if o.ShowTime {
-		fmt.Printf(" %02d:%02d:%02d", now.Hour(), now.Minute(), now.Second())
+		fmt.Printf(" %02d:%02d", datetime.Hour(), datetime.Minute())
 	}
 	fmt.Println()
 	for i := 0; i < o.EmptyLinesAfter; i++ {
